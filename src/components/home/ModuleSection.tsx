@@ -72,7 +72,7 @@ export function ModuleSection({
     const colors = themeColors[theme];
 
     return (
-        <section ref={ref} className="py-32 overflow-hidden relative">
+        <section ref={ref} className="py-10 overflow-hidden relative">
             {/* Background Blob */}
             <div
                 className={cn(

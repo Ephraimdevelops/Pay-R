@@ -4,23 +4,23 @@
 :root {
   /* Base Colors - Glossy White Theme */
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: #000000;
 
   /* Brand Colors */
   --primary: #2563eb;
   --primary-foreground: #ffffff;
 
-  --secondary: #f8fafc;
-  --secondary-foreground: #0f172a;
+  --secondary: #ffffff;
+  --secondary-foreground: #000000;
 
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
+  --accent: #f8fafc;
+  --accent-foreground: #000000;
 
   --muted: #f1f5f9;
   --muted-foreground: #64748b;
 
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #000000;
 
   --border: #e2e8f0;
   --input: #e2e8f0;
@@ -152,26 +152,26 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #020617;
-    --foreground: #f8fafc;
+    --background: #000000;
+    --foreground: #ffffff;
 
     --primary: #3b82f6;
     --primary-foreground: #ffffff;
 
-    --secondary: #1e293b;
-    --secondary-foreground: #f8fafc;
+    --secondary: #000000;
+    --secondary-foreground: #ffffff;
 
-    --accent: #1e293b;
-    --accent-foreground: #f8fafc;
+    --accent: #111111;
+    --accent-foreground: #ffffff;
 
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
+    --muted: #111111;
+    --muted-foreground: #a1a1aa;
 
-    --card: #020617;
-    --card-foreground: #f8fafc;
+    --card: #000000;
+    --card-foreground: #ffffff;
 
-    --border: #1e293b;
-    --input: #1e293b;
+    --border: #333333;
+    --input: #333333;
     --ring: #3b82f6;
   }
 }

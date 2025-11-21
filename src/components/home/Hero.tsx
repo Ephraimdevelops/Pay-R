@@ -18,6 +18,7 @@ export function Hero() {
     });
 
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     const submitDemo = useMutation(api.submissions.submitDemoRequest);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,55 +44,46 @@ export function Hero() {
     };
 
     return (
-        <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-            {/* Cinematic Background - Theme Aware */}
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-50 via-white to-white dark:from-[#2E1065] dark:via-[#3B82F6] dark:to-[#0f0c29] -z-20 transition-colors duration-500" />
-            <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20 dark:opacity-20 -z-10" />
+        <section ref={ref} className="relative min-h-[120vh] flex items-center justify-center overflow-hidden pt-20 pb-16">
+            {/* Cinematic Background */}
+            <div className="absolute inset-0 bg-background -z-20" />
+            <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03] dark:opacity-[0.05] -z-10" />
 
-            {/* Animated Blobs */}
-            <motion.div
-                animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-blue-200/50 dark:bg-purple-500/30 rounded-full blur-[120px] -z-10"
-            />
-            <motion.div
-                animate={{ scale: [1, 1.1, 1], rotate: [0, -60, 0] }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-purple-200/50 dark:bg-blue-500/20 rounded-full blur-[100px] -z-10"
-            />
+            {/* Ambient Glows */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[800px] h-[600px] bg-purple-500/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
 
             <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="max-w-4xl mx-auto"
+                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                    className="max-w-5xl mx-auto"
                 >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-white/10 backdrop-blur-md border border-blue-100 dark:border-white/20 text-blue-600 dark:text-blue-100 text-sm mb-8 animate-fade-in shadow-sm">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-md border border-border/50 text-muted-foreground text-sm mb-10 shadow-sm hover:bg-secondary/80 transition-colors cursor-default">
                         <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                         </span>
                         New: AI-Powered Payroll Automation
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight">
+                    <h1 className="text-5xl md:text-7xl font-medium tracking-tight text-foreground mb-8 leading-[1.1]">
                         The HR platform to manage <br />
                         your entire workforce — <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-200 dark:to-purple-200">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient bg-300%">
                             all in one system.
                         </span>
                     </h1>
 
-                    <p className="text-xl text-slate-600 dark:text-blue-100/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-                        Manage payroll, benefits, and compliance in one unified system.
-                        Built for modern teams who demand speed and accuracy.
+                    <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed font-light">
+                        A complete, modern HR solution built to simplify every part of workforce management.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24">
                         <Dialog>
                             <DialogTrigger asChild>
-                                <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-blue-600 text-white hover:bg-blue-700 shadow-xl shadow-blue-500/20 transition-all hover:scale-105">
+                                <Button size="lg" className="h-16 px-10 text-lg rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/30">
                                     Book a Demo <ArrowRight className="ml-2 h-5 w-5" />
                                 </Button>
                             </DialogTrigger>
@@ -145,7 +137,7 @@ export function Hero() {
 
                         <Dialog>
                             <DialogTrigger asChild>
-                                <Button variant="outline" size="lg" className="h-14 px-8 text-lg rounded-full border-slate-200 dark:border-white/30 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 backdrop-blur-sm transition-all group">
+                                <Button variant="outline" size="lg" className="h-16 px-10 text-lg rounded-full border-border/50 text-foreground hover:bg-secondary/50 backdrop-blur-sm transition-all group">
                                     <Play className="mr-2 h-5 w-5 fill-current group-hover:scale-110 transition-transform" /> Watch Video
                                 </Button>
                             </DialogTrigger>
@@ -156,49 +148,51 @@ export function Hero() {
                             </DialogContent>
                         </Dialog>
                     </div>
-
-                    {/* Social Proof */}
-                    <div className="flex items-center justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                        {/* Placeholders for logos */}
-                        <div className="h-8 w-24 bg-slate-300 dark:bg-white/20 rounded animate-pulse" />
-                        <div className="h-8 w-24 bg-slate-300 dark:bg-white/20 rounded animate-pulse delay-75" />
-                        <div className="h-8 w-24 bg-slate-300 dark:bg-white/20 rounded animate-pulse delay-150" />
-                        <div className="h-8 w-24 bg-slate-300 dark:bg-white/20 rounded animate-pulse delay-200" />
-                    </div>
                 </motion.div>
 
-                {/* Dashboard Preview */}
+                {/* Dashboard Preview - Glassmorphism */}
                 <motion.div
-                    style={{ y }}
-                    className="mt-20 relative w-full max-w-6xl mx-auto perspective-1000"
+                    style={{ y, opacity }}
+                    className="relative w-full max-w-7xl mx-auto perspective-1000"
                 >
-                    <div className="relative rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl shadow-blue-500/10 dark:shadow-blue-500/20 bg-white/80 dark:bg-gray-900/50 backdrop-blur-xl transform rotate-x-12 hover:rotate-x-0 transition-transform duration-700 ease-out">
+                    <div className="relative rounded-2xl overflow-hidden border border-white/20 dark:border-white/10 shadow-2xl shadow-blue-500/10 bg-white/40 dark:bg-black/40 backdrop-blur-xl transform rotate-x-12 hover:rotate-x-0 transition-transform duration-1000 ease-out group">
                         {/* Mock UI Header */}
-                        <div className="h-12 bg-slate-50 dark:bg-white/5 border-b border-slate-200 dark:border-white/10 flex items-center px-4 gap-2">
+                        <div className="h-14 bg-white/50 dark:bg-white/5 border-b border-white/20 dark:border-white/10 flex items-center px-6 gap-4">
                             <div className="flex gap-2">
                                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
                                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
                             </div>
+                            <div className="h-6 w-64 bg-black/5 dark:bg-white/5 rounded-full ml-4" />
                         </div>
+
                         {/* Mock UI Body */}
-                        <div className="p-8 grid grid-cols-3 gap-6 h-[500px]">
-                            <div className="col-span-1 bg-slate-50 dark:bg-white/5 rounded-lg p-4 border border-slate-100 dark:border-white/5 animate-pulse-slow">
-                                <div className="h-4 w-24 bg-slate-200 dark:bg-white/10 rounded mb-4" />
-                                <div className="space-y-3">
-                                    <div className="h-10 w-full bg-white dark:bg-white/5 rounded border border-slate-100 dark:border-transparent" />
-                                    <div className="h-10 w-full bg-white dark:bg-white/5 rounded border border-slate-100 dark:border-transparent" />
-                                    <div className="h-10 w-full bg-white dark:bg-white/5 rounded border border-slate-100 dark:border-transparent" />
-                                </div>
+                        <div className="p-8 grid grid-cols-12 gap-8 h-[600px] bg-gradient-to-b from-white/40 to-white/10 dark:from-white/5 dark:to-transparent">
+                            {/* Sidebar */}
+                            <div className="col-span-3 space-y-4 hidden md:block">
+                                <div className="h-10 w-full bg-black/5 dark:bg-white/5 rounded-lg" />
+                                <div className="h-10 w-full bg-black/5 dark:bg-white/5 rounded-lg" />
+                                <div className="h-10 w-full bg-blue-500/10 dark:bg-blue-500/20 rounded-lg border border-blue-500/20" />
+                                <div className="h-10 w-full bg-black/5 dark:bg-white/5 rounded-lg" />
                             </div>
-                            <div className="col-span-2 bg-slate-50 dark:bg-white/5 rounded-lg p-4 border border-slate-100 dark:border-white/5">
-                                <div className="flex justify-between mb-6">
-                                    <div className="h-8 w-32 bg-slate-200 dark:bg-white/10 rounded" />
-                                    <div className="h-8 w-24 bg-blue-100 dark:bg-blue-500/20 rounded" />
+
+                            {/* Main Content */}
+                            <div className="col-span-12 md:col-span-9 grid grid-cols-2 gap-6">
+                                <div className="col-span-2 h-32 bg-white/60 dark:bg-white/5 rounded-xl border border-white/20 dark:border-white/10 p-6 flex items-center justify-between">
+                                    <div className="space-y-2">
+                                        <div className="h-4 w-32 bg-black/10 dark:bg-white/10 rounded" />
+                                        <div className="h-8 w-48 bg-black/20 dark:bg-white/20 rounded" />
+                                    </div>
+                                    <div className="h-16 w-16 rounded-full bg-blue-500/20" />
                                 </div>
-                                <div className="h-64 w-full bg-gradient-to-t from-blue-500/5 to-transparent rounded-lg border border-slate-100 dark:border-white/5" />
+
+                                <div className="h-64 bg-white/60 dark:bg-white/5 rounded-xl border border-white/20 dark:border-white/10" />
+                                <div className="h-64 bg-white/60 dark:bg-white/5 rounded-xl border border-white/20 dark:border-white/10" />
                             </div>
                         </div>
+
+                        {/* Reflection Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
                     </div>
                 </motion.div>
             </div>

@@ -10,22 +10,34 @@ const values = [
     {
         icon: Target,
         title: "Mission Driven",
-        description: "We're obsessed with simplifying HR so companies can focus on their people, not paperwork."
+        description: "We're obsessed with simplifying HR so companies can focus on their people, not paperwork.",
+        color: "text-blue-500",
+        bg: "bg-blue-500/10",
+        border: "border-blue-500/20"
     },
     {
         icon: Heart,
         title: "People First",
-        description: "We believe that behind every employee record is a human being who deserves a great experience."
+        description: "We believe that behind every employee record is a human being who deserves a great experience.",
+        color: "text-red-500",
+        bg: "bg-red-500/10",
+        border: "border-red-500/20"
     },
     {
         icon: Shield,
         title: "Trust & Security",
-        description: "We treat your data with the same level of security and privacy as a bank would."
+        description: "We treat your data with the same level of security and privacy as a bank would.",
+        color: "text-green-500",
+        bg: "bg-green-500/10",
+        border: "border-green-500/20"
     },
     {
         icon: Globe,
         title: "Global Mindset",
-        description: "Workforce management shouldn't be limited by borders. We build for the global economy."
+        description: "Workforce management shouldn't be limited by borders. We build for the global economy.",
+        color: "text-purple-500",
+        bg: "bg-purple-500/10",
+        border: "border-purple-500/20"
     },
 ];
 
@@ -33,53 +45,55 @@ const team = [
     {
         name: "Sarah Chen",
         role: "CEO & Co-Founder",
-        image: "bg-blue-100",
+        image: "/images/team/sarah-chen.png",
         bio: "Ex-Stripe Product Lead. Passionate about fintech and future of work."
     },
     {
         name: "Marcus Rodriguez",
         role: "CTO & Co-Founder",
-        image: "bg-purple-100",
+        image: "/images/team/marcus-rodriguez.png",
         bio: "Previously Engineering Manager at Gusto. 15+ years in HR tech."
     },
     {
         name: "Emily Taylor",
         role: "Head of Design",
-        image: "bg-green-100",
+        image: "/images/team/emily-taylor.png",
         bio: "Award-winning designer focused on creating human-centric enterprise software."
     },
     {
         name: "David Kim",
         role: "VP of Sales",
-        image: "bg-orange-100",
+        image: "/images/team/david-kim.png",
         bio: "Scaled sales teams from 0 to $100M ARR at two previous unicorns."
     },
 ];
 
 export default function CompanyPage() {
     return (
-        <div className="min-h-screen bg-white dark:bg-[#020617]">
+        <div className="min-h-screen bg-background text-foreground">
             <Header />
 
             <main className="pt-20">
                 {/* Hero Section */}
                 <section className="relative py-32 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-[#0f172a] dark:to-[#020617] -z-20" />
+                    <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03] dark:opacity-[0.05] -z-10" />
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+
                     <div className="container mx-auto px-4 md:px-6 text-center">
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
-                            className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-8"
+                            className="text-5xl md:text-7xl font-medium tracking-tight mb-8"
                         >
                             Building the operating system <br />
-                            <span className="text-blue-600 dark:text-blue-400">for the modern workforce.</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">for the modern workforce.</span>
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed"
+                            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light"
                         >
                             Pay-R was founded on a simple premise: HR software shouldn't be painful.
                             We're re-imagining how companies manage their most valuable asset — their people.
@@ -88,25 +102,20 @@ export default function CompanyPage() {
                 </section>
 
                 {/* Stats / Social Proof */}
-                <section className="py-12 border-y border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-white/5">
+                <section className="py-12 border-y border-border/50 bg-card/30 backdrop-blur-sm">
                     <div className="container mx-auto px-4 md:px-6">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                            <div>
-                                <div className="text-4xl font-bold text-slate-900 dark:text-white mb-2">10k+</div>
-                                <div className="text-sm text-slate-500 dark:text-slate-400">Companies</div>
-                            </div>
-                            <div>
-                                <div className="text-4xl font-bold text-slate-900 dark:text-white mb-2">$5B+</div>
-                                <div className="text-sm text-slate-500 dark:text-slate-400">Payroll Processed</div>
-                            </div>
-                            <div>
-                                <div className="text-4xl font-bold text-slate-900 dark:text-white mb-2">100+</div>
-                                <div className="text-sm text-slate-500 dark:text-slate-400">Countries Supported</div>
-                            </div>
-                            <div>
-                                <div className="text-4xl font-bold text-slate-900 dark:text-white mb-2">99.9%</div>
-                                <div className="text-sm text-slate-500 dark:text-slate-400">Uptime SLA</div>
-                            </div>
+                            {[
+                                { label: "Companies", value: "10k+" },
+                                { label: "Payroll Processed", value: "$5B+" },
+                                { label: "Countries Supported", value: "100+" },
+                                { label: "Uptime SLA", value: "99.9%" }
+                            ].map((stat, i) => (
+                                <div key={i}>
+                                    <div className="text-4xl font-medium text-foreground mb-2 tracking-tight">{stat.value}</div>
+                                    <div className="text-sm text-muted-foreground uppercase tracking-wider font-medium">{stat.label}</div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
@@ -116,52 +125,65 @@ export default function CompanyPage() {
                     <div className="container mx-auto px-4 md:px-6">
                         <div className="flex flex-col lg:flex-row items-center gap-16">
                             <div className="flex-1">
-                                <div className="relative aspect-square rounded-2xl overflow-hidden bg-slate-100 dark:bg-white/5">
-                                    {/* Placeholder for office image */}
-                                    <div className="absolute inset-0 flex items-center justify-center text-slate-300 dark:text-slate-600">
-                                        Office Image Placeholder
-                                    </div>
+                                <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-card/50 backdrop-blur-xl group">
+                                    <img
+                                        src="/images/office-environment.png"
+                                        alt="Pay-R Office"
+                                        className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 </div>
                             </div>
-                            <div className="flex-1 space-y-6">
-                                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Our Journey</h2>
-                                <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    It started in 2023 when our founders realized that despite all the technological advancements,
-                                    running payroll and managing HR was still a nightmare of spreadsheets, emails, and clunky legacy software.
-                                </p>
-                                <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    We set out to build something different. A platform that is not just a database, but an intelligent
-                                    system that automates the busy work and gives leaders the insights they need to build better cultures.
-                                </p>
-                                <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Today, Pay-R is trusted by thousands of forward-thinking companies around the world.
-                                </p>
+                            <div className="flex-1 space-y-8">
+                                <h2 className="text-3xl md:text-4xl font-medium text-foreground">Our Journey</h2>
+                                <div className="space-y-6 text-lg text-muted-foreground font-light leading-relaxed">
+                                    <p>
+                                        It started in 2023 when our founders realized that despite all the technological advancements,
+                                        running payroll and managing HR was still a nightmare of spreadsheets, emails, and clunky legacy software.
+                                    </p>
+                                    <p>
+                                        We set out to build something different. A platform that is not just a database, but an intelligent
+                                        system that automates the busy work and gives leaders the insights they need to build better cultures.
+                                    </p>
+                                    <p>
+                                        Today, Pay-R is trusted by thousands of forward-thinking companies around the world.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Values */}
-                <section className="py-24 bg-slate-50 dark:bg-white/5">
+                <section className="py-24 relative overflow-hidden">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
+
                     <div className="container mx-auto px-4 md:px-6">
                         <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Our Core Values</h2>
-                            <p className="text-lg text-slate-600 dark:text-slate-400">
+                            <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-4">Our Core Values</h2>
+                            <p className="text-lg text-muted-foreground font-light">
                                 The principles that guide every decision we make.
                             </p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                             {values.map((value, index) => (
-                                <div key={index} className="bg-white dark:bg-white/5 p-8 rounded-2xl border border-slate-100 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center mb-6">
-                                        <value.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="bg-card/50 backdrop-blur-sm p-8 rounded-3xl border border-border/50 hover:border-border hover:bg-card/80 transition-all duration-300 group"
+                                >
+                                    <div className={`w-12 h-12 rounded-2xl ${value.bg} flex items-center justify-center mb-6 border ${value.border} group-hover:scale-110 transition-transform`}>
+                                        <value.icon className={`w-6 h-6 ${value.color}`} />
                                     </div>
-                                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{value.title}</h3>
-                                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    <h3 className="text-xl font-medium text-foreground mb-3">{value.title}</h3>
+                                    <p className="text-muted-foreground leading-relaxed font-light">
                                         {value.description}
                                     </p>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
                     </div>
@@ -171,26 +193,29 @@ export default function CompanyPage() {
                 <section className="py-24">
                     <div className="container mx-auto px-4 md:px-6">
                         <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Meet the Team</h2>
-                            <p className="text-lg text-slate-600 dark:text-slate-400">
+                            <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-4">Meet the Team</h2>
+                            <p className="text-lg text-muted-foreground font-light">
                                 A diverse group of experts from HR, engineering, and design.
                             </p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                             {team.map((member, index) => (
-                                <div key={index} className="group">
-                                    <div className={`aspect-[4/5] rounded-2xl ${member.image} mb-6 overflow-hidden relative`}>
-                                        {/* Placeholder for headshot */}
-                                        <div className="absolute inset-0 flex items-center justify-center text-slate-400/50 font-bold text-6xl opacity-20">
-                                            {member.name.charAt(0)}
+                                <div key={index} className="group relative">
+                                    <div className="aspect-[4/5] rounded-3xl mb-6 overflow-hidden relative bg-card/50 border border-border/50">
+                                        <img
+                                            src={member.image}
+                                            alt={member.name}
+                                            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                            <p className="text-white/90 text-sm font-light">
+                                                {member.bio}
+                                            </p>
                                         </div>
                                     </div>
-                                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">{member.name}</h3>
-                                    <div className="text-blue-600 dark:text-blue-400 font-medium mb-2">{member.role}</div>
-                                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                                        {member.bio}
-                                    </p>
+                                    <h3 className="text-xl font-medium text-foreground">{member.name}</h3>
+                                    <div className="text-blue-500 font-medium text-sm mb-2">{member.role}</div>
                                 </div>
                             ))}
                         </div>
@@ -198,16 +223,18 @@ export default function CompanyPage() {
                 </section>
 
                 {/* Careers CTA */}
-                <section className="py-24 bg-[#0B0F19] relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-900/20 to-transparent" />
+                <section className="py-32 relative overflow-hidden bg-slate-900">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-black z-0" />
+                    <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10 z-0" />
+
                     <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                        <h2 className="text-3xl md:text-5xl font-medium text-white mb-6 tracking-tight">
                             Join us in shaping the future of work.
                         </h2>
-                        <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+                        <p className="text-xl text-blue-100/80 mb-10 max-w-2xl mx-auto font-light">
                             We're always looking for talented individuals to join our remote-first team.
                         </p>
-                        <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-white text-blue-900 hover:bg-blue-50">
+                        <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-white text-blue-900 hover:bg-blue-50 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
                             View Open Positions <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                     </div>

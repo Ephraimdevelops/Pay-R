@@ -1,72 +1,94 @@
 "use client";
 
 import { ModuleSection } from "./ModuleSection";
-import { User, CreditCard, Briefcase, TrendingUp, Building2 } from "lucide-react";
+import { Users, DollarSign, Briefcase, TrendingUp } from "lucide-react";
 
 export function Modules() {
     return (
-        <div className="bg-slate-950" style={{ "--foreground": "255 255 255", "--muted-foreground": "148 163 184" } as React.CSSProperties}>
+        <div className="bg-background space-y-10 py-10" id="modules">
             {/* Module 1: Employee Management */}
             <ModuleSection
-                title="Everything in One Place."
-                description="Manage all your employees effortlessly — personal info, contracts, attendance, promotions, communication, self-service, and more."
+                title="Employee Management"
+                description="Manage your entire team from a single dashboard. Add, edit, search, and access employee information effortlessly. Employees can also access self-service features such as payslips and leave requests directly through the system."
                 features={[
-                    "Personal Information & Contracts",
+                    "Personal Information",
                     "Allowances & Deductions",
-                    "Attendance Tracking",
-                    "Self-Service Portal"
+                    "Attendance",
+                    "Contracts",
+                    "Disciplinary Records",
+                    "Promotions & Demotions",
+                    "Direct Communication with Employees"
                 ]}
                 theme="blue"
                 imagePosition="right"
             >
-                <div className="w-full max-w-sm bg-white rounded-xl shadow-lg p-6 space-y-6">
-                    <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center">
-                            <User className="w-8 h-8 text-blue-600" />
+                <div className="w-full max-w-md bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-8 relative overflow-hidden group hover:border-blue-500/30 transition-colors duration-500">
+                    <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -mr-32 -mb-32 pointer-events-none" />
+
+                    <div className="flex items-center gap-4 mb-8">
+                        <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500">
+                            <Users className="w-6 h-6" />
                         </div>
                         <div>
-                            <div className="h-4 w-32 bg-gray-200 rounded mb-2" />
-                            <div className="h-3 w-24 bg-gray-100 rounded" />
+                            <div className="font-medium text-foreground">Total Employees</div>
+                            <div className="text-2xl font-bold text-foreground">1,248</div>
                         </div>
                     </div>
-                    <div className="space-y-3">
-                        <div className="h-10 w-full bg-gray-50 rounded border border-gray-100" />
-                        <div className="h-10 w-full bg-gray-50 rounded border border-gray-100" />
-                        <div className="h-10 w-full bg-gray-50 rounded border border-gray-100" />
+
+                    <div className="space-y-4">
+                        {[1, 2, 3].map((i) => (
+                            <div key={i} className="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors">
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-200 to-gray-300" />
+                                <div className="flex-1">
+                                    <div className="h-2 w-24 bg-foreground/10 rounded-full mb-2" />
+                                    <div className="h-2 w-16 bg-foreground/5 rounded-full" />
+                                </div>
+                                <div className="w-2 h-2 rounded-full bg-green-500" />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </ModuleSection>
 
             {/* Module 2: Payroll Management */}
             <ModuleSection
-                title="Payroll That Runs Itself."
-                description="Accurate, automated payroll processing with taxes, allowances, deductions and multi-currency support."
+                title="Payroll Management"
+                description="Generate payrolls in a few clicks. The system automatically calculates salaries, allowances, deductions, and applicable taxes for each pay period."
                 features={[
-                    "Auto-calculated Taxes",
-                    "Multi-currency Support",
-                    "Instant Salary Slips",
-                    "One-click Export"
+                    "Access all employee payslips",
+                    "Send payslips via email",
+                    "Export payroll data to Excel",
+                    "Multi-currency support"
                 ]}
                 theme="green"
                 imagePosition="left"
             >
-                <div className="w-full max-w-sm bg-white rounded-xl shadow-lg p-6">
-                    <div className="flex justify-between items-center mb-8">
-                        <div className="text-sm text-gray-500">Net Pay</div>
-                        <CreditCard className="w-5 h-5 text-emerald-500" />
-                    </div>
-                    <div className="text-4xl font-bold text-emerald-600 mb-2">$12,450.00</div>
-                    <div className="text-sm text-emerald-600/80 bg-emerald-50 inline-block px-2 py-1 rounded">
-                        +2.5% from last month
-                    </div>
-                    <div className="mt-8 space-y-2">
-                        <div className="flex justify-between text-sm">
-                            <span>Gross Pay</span>
-                            <span>$15,000.00</span>
+                <div className="w-full max-w-md bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-5 relative overflow-hidden group hover:border-emerald-500/30 transition-colors duration-500">
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px] -ml-32 -mb-32 pointer-events-none" />
+
+                    <div className="flex justify-between items-center mb-10">
+                        <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+                            <DollarSign className="w-6 h-6" />
                         </div>
-                        <div className="flex justify-between text-sm text-red-500">
-                            <span>Taxes</span>
-                            <span>-$2,550.00</span>
+                        <div className="text-right">
+                            <div className="text-sm text-muted-foreground">Next Payout</div>
+                            <div className="font-medium text-foreground">Oct 25, 2024</div>
+                        </div>
+                    </div>
+
+                    <div className="space-y-3">
+                        <div className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">Gross Pay</span>
+                            <span className="font-medium text-foreground">$142,500.00</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">Taxes</span>
+                            <span className="font-medium text-foreground">$42,100.00</span>
+                        </div>
+                        <div className="h-px bg-border/50 my-2" />
+                        <div className="flex justify-between text-lg font-bold">
+                            <span className="text-foreground">Net Pay</span>
+                            <span className="text-emerald-500">$100,400.00</span>
                         </div>
                     </div>
                 </div>
@@ -74,109 +96,98 @@ export function Modules() {
 
             {/* Module 3: Recruitment */}
             <ModuleSection
-                title="Hire Faster, Hire Smarter."
-                description="Receive applications directly from your website, evaluate candidates, shortlist instantly, and schedule interviews effortlessly."
+                title="Recruitment"
+                description="Receive job applications directly through your company website and manage them with powerful tools for screening, filtering, and shortlisting — without filling your email inbox."
                 features={[
-                    "Automated Job Posting",
-                    "Candidate Filtering",
-                    "Interview Scheduling",
-                    "Resume Parsing"
-                ]}
-                theme="orange"
-                imagePosition="right"
-            >
-                <div className="w-full max-w-sm space-y-4">
-                    {[1, 2, 3].map((i) => (
-                        <div key={i} className="bg-white rounded-lg shadow-md p-4 flex items-center gap-4 border-l-4 border-orange-500">
-                            <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
-                                <Briefcase className="w-5 h-5 text-orange-600" />
-                            </div>
-                            <div className="flex-1">
-                                <div className="h-3 w-24 bg-gray-200 rounded mb-1" />
-                                <div className="h-2 w-16 bg-gray-100 rounded" />
-                            </div>
-                            <div className="px-3 py-1 bg-orange-50 text-orange-600 text-xs rounded-full">
-                                Review
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </ModuleSection>
-
-            {/* Module 4: Performance */}
-            <ModuleSection
-                title="Grow People, Grow the Company."
-                description="A modern, structured way to set goals, track progress, and evaluate performance fairly."
-                features={[
-                    "360° Feedback",
-                    "Goal Tracking",
-                    "Performance Reviews",
-                    "Development Plans"
+                    "Create job posts",
+                    "Optional screening questions",
+                    "Receive applications through company website",
+                    "Filter candidates based on criteria",
+                    "Schedule interviews",
+                    "Auto-reject unqualified applicants",
+                    "Access thousands of CVs from Ajiriwa.net"
                 ]}
                 theme="purple"
-                imagePosition="left"
+                imagePosition="right"
             >
-                <div className="w-full max-w-sm bg-white rounded-xl shadow-lg p-6">
-                    <div className="flex items-center justify-between mb-6">
-                        <h3 className="font-semibold">Performance Score</h3>
-                        <TrendingUp className="w-5 h-5 text-purple-600" />
-                    </div>
-                    <div className="flex items-end gap-2 mb-6">
-                        <span className="text-5xl font-bold text-purple-600">4.8</span>
-                        <span className="text-gray-400 mb-1">/ 5.0</span>
-                    </div>
-                    <div className="space-y-4">
-                        <div>
-                            <div className="flex justify-between text-xs mb-1">
-                                <span>Goals Met</span>
-                                <span>92%</span>
-                            </div>
-                            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                                <div className="h-full bg-purple-500 w-[92%]" />
-                            </div>
+                <div className="w-full max-w-md bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-8 relative overflow-hidden group hover:border-purple-500/30 transition-colors duration-500">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] -mr-32 -mt-32 pointer-events-none" />
+
+                    <div className="flex items-center gap-4 mb-8">
+                        <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-500">
+                            <Briefcase className="w-6 h-6" />
                         </div>
-                        <div>
-                            <div className="flex justify-between text-xs mb-1">
-                                <span>Peer Review</span>
-                                <span>4.9</span>
-                            </div>
-                            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                                <div className="h-full bg-purple-400 w-[95%]" />
-                            </div>
+                        <div className="flex-1">
+                            <div className="font-medium text-foreground">Senior Product Designer</div>
+                            <div className="text-sm text-muted-foreground">Remote • Full-time</div>
+                        </div>
+                        <div className="px-3 py-1 rounded-full bg-purple-500/10 text-purple-500 text-xs font-medium">
+                            Active
+                        </div>
+                    </div>
+
+                    <div className="flex gap-2 mb-6">
+                        <div className="flex-1 bg-card/50 rounded-xl p-3 text-center border border-border/50">
+                            <div className="text-xl font-bold text-foreground">48</div>
+                            <div className="text-xs text-muted-foreground">Applied</div>
+                        </div>
+                        <div className="flex-1 bg-card/50 rounded-xl p-3 text-center border border-border/50">
+                            <div className="text-xl font-bold text-foreground">12</div>
+                            <div className="text-xs text-muted-foreground">Screened</div>
+                        </div>
+                        <div className="flex-1 bg-card/50 rounded-xl p-3 text-center border border-border/50">
+                            <div className="text-xl font-bold text-foreground">4</div>
+                            <div className="text-xs text-muted-foreground">Interview</div>
                         </div>
                     </div>
                 </div>
             </ModuleSection>
 
-            {/* Module 5: Company */}
+            {/* Module 4: Performance Management */}
             <ModuleSection
-                title="Your Company, Fully Organized."
-                description="Everything you need to run your company smoothly — from policies to org structure."
+                title="Performance Management"
+                description="Set goals, track progress, and evaluate performance consistently across your organization. Empower managers to build high-performing teams."
                 features={[
-                    "Org Chart Visualization",
-                    "Document Management",
-                    "Company Policies",
-                    "Asset Tracking"
+                    "Managers set clear objectives",
+                    "Objectives become evaluation criteria",
+                    "Full performance appraisal workflow",
+                    "Employees & managers rate objectives",
+                    "Create PIPs for underperforming staff"
                 ]}
-                theme="gold"
-                imagePosition="right"
+                theme="orange"
+                imagePosition="left"
             >
-                <div className="w-full max-w-sm bg-white rounded-xl shadow-lg p-6 relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-yellow-400" />
-                    <div className="flex flex-col items-center space-y-4">
-                        <div className="w-16 h-16 rounded-full border-2 border-yellow-400 p-1">
-                            <div className="w-full h-full rounded-full bg-gray-100 flex items-center justify-center">
-                                <Building2 className="w-8 h-8 text-gray-400" />
+                <div className="w-full max-w-md bg-card/50 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-8 relative overflow-hidden group hover:border-orange-500/30 transition-colors duration-500">
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-500/10 rounded-full blur-[80px] -ml-32 -mb-32 pointer-events-none" />
+
+                    <div className="flex items-center gap-4 mb-8">
+                        <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500">
+                            <TrendingUp className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <div className="font-medium text-foreground">Performance Review</div>
+                            <div className="text-sm text-muted-foreground">Q3 2024 Cycle</div>
+                        </div>
+                    </div>
+
+                    <div className="space-y-6">
+                        <div>
+                            <div className="flex justify-between text-sm mb-2">
+                                <span className="text-muted-foreground">Goal Achievement</span>
+                                <span className="font-medium text-foreground">85%</span>
+                            </div>
+                            <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                                <div className="h-full w-[85%] bg-orange-500 rounded-full" />
                             </div>
                         </div>
-                        <div className="text-center">
-                            <div className="h-4 w-32 bg-gray-200 rounded mx-auto mb-2" />
-                            <div className="h-3 w-24 bg-gray-100 rounded mx-auto" />
-                        </div>
-                        <div className="flex gap-2 mt-4">
-                            <div className="w-20 h-24 bg-gray-50 rounded border border-gray-100" />
-                            <div className="w-20 h-24 bg-gray-50 rounded border border-gray-100" />
-                            <div className="w-20 h-24 bg-gray-50 rounded border border-gray-100" />
+                        <div>
+                            <div className="flex justify-between text-sm mb-2">
+                                <span className="text-muted-foreground">Core Competencies</span>
+                                <span className="font-medium text-foreground">92%</span>
+                            </div>
+                            <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                                <div className="h-full w-[92%] bg-orange-500 rounded-full" />
+                            </div>
                         </div>
                     </div>
                 </div>
