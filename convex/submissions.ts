@@ -11,7 +11,7 @@ export const submitContactForm = mutation({
     args: {
         name: v.string(),
         email: v.string(),
-        company: v.string(),
+        company: v.optional(v.string()),
         message: v.string(),
     },
     handler: async (ctx, args) => {

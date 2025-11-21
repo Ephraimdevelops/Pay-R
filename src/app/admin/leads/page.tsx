@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -8,17 +10,13 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Search, Download, MoreHorizontal } from "lucide-react";
-
-const mockLeads = [
-    { id: 1, name: "John Doe", email: "john@example.com", company: "Acme Inc", status: "New", date: "2024-11-20" },
-    { id: 2, name: "Jane Smith", email: "jane@tech.com", company: "Tech Corp", status: "Contacted", date: "2024-11-19" },
-    { id: 3, name: "Bob Wilson", email: "bob@global.com", company: "Global Ltd", status: "Qualified", date: "2024-11-18" },
-    { id: 4, name: "Alice Brown", email: "alice@startup.io", company: "Startup IO", status: "Proposal", date: "2024-11-17" },
-    { id: 5, name: "Charlie Davis", email: "charlie@enterprise.com", company: "Enterprise Co", status: "Closed", date: "2024-11-16" },
-];
+import { Search, Download, MoreHorizontal, Loader2 } from "lucide-react";
+import { useQuery } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 
 export default function LeadsPage() {
+    const leads = useQuery(api.submissions.getSubmissions);
+
     return (
         <div className="space-y-8">
             <div className="flex items-center justify-between">
@@ -52,30 +50,45 @@ export default function LeadsPage() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {mockLeads.map((lead) => (
-                            <TableRow key={lead.id}>
-                                <TableCell className="font-medium">{lead.name}</TableCell>
-                                <TableCell>{lead.email}</TableCell>
-                                <TableCell>{lead.company}</TableCell>
-                                <TableCell>
-                                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-                    ${lead.status === 'New' ? 'bg-blue-100 text-blue-800' :
-                                            lead.status === 'Contacted' ? 'bg-yellow-100 text-yellow-800' :
-                                                lead.status === 'Qualified' ? 'bg-purple-100 text-purple-800' :
-                                                    lead.status === 'Proposal' ? 'bg-orange-100 text-orange-800' :
-                                                        'bg-green-100 text-green-800'
-                                        }`}>
-                                        {lead.status}
-                                    </span>
-                                </TableCell>
-                                <TableCell>{lead.date}</TableCell>
-                                <TableCell className="text-right">
-                                    <Button variant="ghost" size="icon">
-                                        <MoreHorizontal className="h-4 w-4" />
-                                    </Button>
+                        {!leads ? (
+                            <TableRow>
+                                <TableCell colSpan={6} className="h-24 text-center">
+                                    <div className="flex justify-center items-center">
+                                        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+                                    </div>
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        ) : leads.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={6} className="h-24 text-center text-muted-foreground">
+                                    No leads found.
+                                </TableCell>
+                            </TableRow>
+                        ) : (
+                            leads.map((lead) => (
+                                <TableRow key={lead._id}>
+                                    <TableCell className="font-medium">{lead.name}</TableCell>
+                                    <TableCell>{lead.email}</TableCell>
+                                    <TableCell>{lead.company || "-"}</TableCell>
+                                    <TableCell>
+                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                            ${lead.status === 'new' ? 'bg-blue-100 text-blue-800' :
+                                                lead.status === 'contacted' ? 'bg-yellow-100 text-yellow-800' :
+                                                    lead.status === 'closed' ? 'bg-green-100 text-green-800' :
+                                                        'bg-gray-100 text-gray-800'
+                                            }`}>
+                                            {lead.status.charAt(0).toUpperCase() + lead.status.slice(1)}
+                                        </span>
+                                    </TableCell>
+                                    <TableCell>{new Date(lead.createdAt).toLocaleDateString()}</TableCell>
+                                    <TableCell className="text-right">
+                                        <Button variant="ghost" size="icon">
+                                            <MoreHorizontal className="h-4 w-4" />
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        )}
                     </TableBody>
                 </Table>
             </div>

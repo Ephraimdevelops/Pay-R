@@ -30,7 +30,7 @@ export function Pricing() {
                         Simple, transparent pricing
                     </h2>
                     <p className="text-lg text-muted-foreground mb-8">
-                        Choose the plan that's right for your growing team.
+                        Choose the plan that&apos;s right for your growing team.
                     </p>
 
                     {/* Controls */}
@@ -75,7 +75,7 @@ export function Pricing() {
                             <p className="text-muted-foreground text-sm mb-4">For small teams getting started.</p>
                             <div className="flex items-baseline gap-1">
                                 <span className="text-4xl font-bold">${calculatePrice(49).toFixed(0)}</span>
-                                <span className="text-muted-foreground">/mo</span>
+                                <span className="text-muted-foreground ml-1">/ {isAnnual ? 'yr' : 'mo'}</span>
                             </div>
                         </div>
                         <ul className="space-y-4 mb-8 flex-1">

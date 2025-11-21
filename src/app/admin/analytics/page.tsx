@@ -38,7 +38,7 @@ export default function AnalyticsPage() {
         <div className="space-y-8">
             <div>
                 <h1 className="text-3xl font-bold tracking-tight text-foreground">Analytics</h1>
-                <p className="text-muted-foreground">Detailed insights into your platform's performance.</p>
+                <p className="text-muted-foreground">View your dashboard&apos;s performance metrics.</p>
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">

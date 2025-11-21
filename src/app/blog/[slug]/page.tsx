@@ -41,13 +41,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                         </p>
                         <h2>The Shift to Asynchronous Communication</h2>
                         <p>
-                            One of the biggest changes we're seeing is the move away from real-time dependency.
+                            One of the biggest changes we&apos;re seeing is the move away from real-time dependency.
                             Teams are learning to collaborate effectively without being online at the exact same time.
                         </p>
                         <blockquote>
-                            "The future belongs to companies that can build culture across time zones."
+                            &quot;The future belongs to companies that can build culture across time zones.&quot;
                         </blockquote>
-                        <h2>Technology's Role</h2>
+                        <h2>Technology&apos;s Role</h2>
                         <p>
                             Tools like Pay-R are essential in this new era, providing a centralized hub for
                             distributed teams to manage everything from payroll to performance reviews.

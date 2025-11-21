@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
+import NextImage from "next/image";
 
 export function Hero() {
     const ref = useRef(null);
@@ -18,7 +19,7 @@ export function Hero() {
     });
 
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    const opacity = useTransform(scrollYProgress, [0.5, 0.9], [1, 0]);
 
     const submitDemo = useMutation(api.submissions.submitDemoRequest);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -101,7 +102,7 @@ export function Hero() {
                                         </div>
                                         <h3 className="text-xl font-bold">Request Sent!</h3>
                                         <p className="text-muted-foreground text-sm">
-                                            We'll be in touch shortly to schedule your demo.
+                                            We&apos;ll be in touch shortly to schedule your demo.
                                         </p>
                                         <Button onClick={() => setIsSuccess(false)} variant="outline" size="sm">
                                             Close
@@ -156,40 +157,14 @@ export function Hero() {
                     className="relative w-full max-w-7xl mx-auto perspective-1000"
                 >
                     <div className="relative rounded-2xl overflow-hidden border border-white/20 dark:border-white/10 shadow-2xl shadow-blue-500/10 bg-white/40 dark:bg-black/40 backdrop-blur-xl transform rotate-x-12 hover:rotate-x-0 transition-transform duration-1000 ease-out group">
-                        {/* Mock UI Header */}
-                        <div className="h-14 bg-white/50 dark:bg-white/5 border-b border-white/20 dark:border-white/10 flex items-center px-6 gap-4">
-                            <div className="flex gap-2">
-                                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                                <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                            </div>
-                            <div className="h-6 w-64 bg-black/5 dark:bg-white/5 rounded-full ml-4" />
-                        </div>
-
-                        {/* Mock UI Body */}
-                        <div className="p-8 grid grid-cols-12 gap-8 h-[600px] bg-gradient-to-b from-white/40 to-white/10 dark:from-white/5 dark:to-transparent">
-                            {/* Sidebar */}
-                            <div className="col-span-3 space-y-4 hidden md:block">
-                                <div className="h-10 w-full bg-black/5 dark:bg-white/5 rounded-lg" />
-                                <div className="h-10 w-full bg-black/5 dark:bg-white/5 rounded-lg" />
-                                <div className="h-10 w-full bg-blue-500/10 dark:bg-blue-500/20 rounded-lg border border-blue-500/20" />
-                                <div className="h-10 w-full bg-black/5 dark:bg-white/5 rounded-lg" />
-                            </div>
-
-                            {/* Main Content */}
-                            <div className="col-span-12 md:col-span-9 grid grid-cols-2 gap-6">
-                                <div className="col-span-2 h-32 bg-white/60 dark:bg-white/5 rounded-xl border border-white/20 dark:border-white/10 p-6 flex items-center justify-between">
-                                    <div className="space-y-2">
-                                        <div className="h-4 w-32 bg-black/10 dark:bg-white/10 rounded" />
-                                        <div className="h-8 w-48 bg-black/20 dark:bg-white/20 rounded" />
-                                    </div>
-                                    <div className="h-16 w-16 rounded-full bg-blue-500/20" />
-                                </div>
-
-                                <div className="h-64 bg-white/60 dark:bg-white/5 rounded-xl border border-white/20 dark:border-white/10" />
-                                <div className="h-64 bg-white/60 dark:bg-white/5 rounded-xl border border-white/20 dark:border-white/10" />
-                            </div>
-                        </div>
+                        <NextImage
+                            src="/images/dashboard-preview.jpg"
+                            alt="Pay-R Dashboard Preview"
+                            width={1400}
+                            height={900}
+                            className="w-full h-auto object-cover"
+                            priority
+                        />
 
                         {/* Reflection Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />

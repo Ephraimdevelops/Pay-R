@@ -50,7 +50,7 @@ export default function ContactPage() {
                                 Get in touch
                             </h1>
                             <p className="text-xl text-slate-600 dark:text-slate-400 mb-12">
-                                Have questions about Pay-R? We're here to help. Fill out the form or reach out to us directly.
+                                Have questions about Pay-R? We&apos;re here to help. Fill out the form or reach out to us directly.
                             </p>
 
                             <div className="space-y-8">
@@ -96,7 +96,7 @@ export default function ContactPage() {
                             <CardHeader>
                                 <CardTitle className="text-slate-900 dark:text-white">Book a Demo or Send a Message</CardTitle>
                                 <CardDescription className="text-slate-500 dark:text-slate-400">
-                                    Tell us about your needs and we'll get back to you shortly.
+                                    Tell us about your needs and we&apos;ll get back to you shortly.
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>

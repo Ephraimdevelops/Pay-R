@@ -95,8 +95,8 @@ export default function CompanyPage() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light"
                         >
-                            Pay-R was founded on a simple premise: HR software shouldn't be painful.
-                            We're re-imagining how companies manage their most valuable asset — their people.
+                            Pay-R was founded on a simple premise: HR software shouldn&apos;t be painful.
+                            We&apos;re re-imagining how companies manage their most valuable asset — their people.
                         </motion.p>
                     </div>
                 </section>
@@ -232,7 +232,7 @@ export default function CompanyPage() {
                             Join us in shaping the future of work.
                         </h2>
                         <p className="text-xl text-blue-100/80 mb-10 max-w-2xl mx-auto font-light">
-                            We're always looking for talented individuals to join our remote-first team.
+                            We&apos;re always looking for talented individuals to join our remote-first team.
                         </p>
                         <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-white text-blue-900 hover:bg-blue-50 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
                             View Open Positions <ArrowRight className="ml-2 h-5 w-5" />

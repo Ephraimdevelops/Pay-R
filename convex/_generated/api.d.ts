@@ -8,6 +8,8 @@
  * @module
  */
 
+import type * as analytics from "../analytics.js";
+import type * as blog from "../blog.js";
 import type * as submissions from "../submissions.js";
 
 import type {
@@ -17,6 +19,8 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  analytics: typeof analytics;
+  blog: typeof blog;
   submissions: typeof submissions;
 }>;
 

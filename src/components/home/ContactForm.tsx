@@ -8,18 +8,31 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 export function ContactForm() {
+    const submitContact = useMutation(api.submissions.submitContactForm);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        setIsSubmitting(false);
-        setIsSubmitted(true);
+
+        const formData = new FormData(e.currentTarget);
+        const name = `${formData.get("first-name")} ${formData.get("last-name")}`;
+        const email = formData.get("email") as string;
+        const message = formData.get("message") as string;
+
+        try {
+            await submitContact({ name, email, message });
+            setIsSubmitted(true);
+        } catch (error) {
+            console.error("Failed to submit form:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -31,7 +44,7 @@ export function ContactForm() {
                             Get in touch with our team
                         </h2>
                         <p className="text-lg text-muted-foreground mb-8">
-                            Have questions about Pay-R? We're here to help. Fill out the form and we'll be in touch shortly.
+                            Have questions about Pay-R? We&apos;re here to help. Fill out the form and we&apos;ll be in touch shortly.
                         </p>
 
                         <div className="space-y-6">
@@ -75,7 +88,7 @@ export function ContactForm() {
                                         </div>
                                         <h3 className="text-xl font-bold text-foreground mb-2">Message Sent!</h3>
                                         <p className="text-muted-foreground mb-6">
-                                            Thank you for reaching out. We'll get back to you as soon as possible.
+                                            Thank you for reaching out. We&apos;ll get back to you as soon as possible.
                                         </p>
                                         <Button onClick={() => setIsSubmitted(false)} variant="outline">
                                             Send another message
@@ -86,21 +99,22 @@ export function ContactForm() {
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-2">
                                                 <Label htmlFor="first-name">First name</Label>
-                                                <Input id="first-name" placeholder="John" required />
+                                                <Input id="first-name" name="first-name" placeholder="John" required />
                                             </div>
                                             <div className="space-y-2">
                                                 <Label htmlFor="last-name">Last name</Label>
-                                                <Input id="last-name" placeholder="Doe" required />
+                                                <Input id="last-name" name="last-name" placeholder="Doe" required />
                                             </div>
                                         </div>
                                         <div className="space-y-2">
                                             <Label htmlFor="email">Email</Label>
-                                            <Input id="email" type="email" placeholder="john@company.com" required />
+                                            <Input id="email" name="email" type="email" placeholder="john@company.com" required />
                                         </div>
                                         <div className="space-y-2">
                                             <Label htmlFor="message">Message</Label>
                                             <Textarea
                                                 id="message"
+                                                name="message"
                                                 placeholder="Tell us about your team size and needs..."
                                                 className="min-h-[120px]"
                                                 required
@@ -116,6 +130,6 @@ export function ContactForm() {
                     </motion.div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
