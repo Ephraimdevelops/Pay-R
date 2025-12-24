@@ -40,7 +40,7 @@ export default function ROICalculatorPage() {
     return (
         <div className="min-h-screen bg-background flex flex-col font-sans">
             <Header />
-            <main className="flex-1 pt-32 pb-20">
+            <main className="flex-1 pt-44 md:pt-48 pb-20">
                 <div className="container mx-auto px-4 md:px-6">
                     {/* Hero */}
                     <div className="text-center max-w-3xl mx-auto mb-16">

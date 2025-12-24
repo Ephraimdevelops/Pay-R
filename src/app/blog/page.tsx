@@ -32,7 +32,7 @@ export default function BlogIndexPage() {
     return (
         <div className="min-h-screen bg-background flex flex-col font-sans">
             <Header />
-            <main className="flex-1 pt-32 pb-20">
+            <main className="flex-1 pt-44 md:pt-48 pb-20">
                 {/* Header Section */}
                 <div className="container mx-auto px-4 md:px-6 mb-12 text-center">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
