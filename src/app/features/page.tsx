@@ -77,7 +77,7 @@ export default function FeaturesPage() {
             <Header />
 
             <main className="pt-32">
-                {/* Hero Layout: Image Left, Copy Right */}
+                {/* Hero Layout: Copy Left (First), Image Right (Second) */}
                 <section className="relative py-20 lg:py-32 overflow-hidden">
                     {/* Background Glows */}
                     <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
@@ -88,11 +88,53 @@ export default function FeaturesPage() {
 
                     <div className="container mx-auto px-4 md:px-6">
                         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-                            {/* Left: Image (Group Photo) */}
+
+                            {/* Copy (First in DOM = Left on Desktop via lg:flex-row default, Top on Mobile via flex-col default) */}
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8 }}
+                                className="flex-1 space-y-8 text-center lg:text-left"
+                            >
+                                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-sm font-medium">
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                    </span>
+                                    The All-In-One Solution
+                                </div>
+
+                                <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1]">
+                                    The Operating System for <br />
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400">
+                                        Modern HR.
+                                    </span>
+                                </h1>
+
+                                <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light">
+                                    Unify your people, payroll, and performance in one intuitive platform.
+                                    Automate the administrative chaos so you can focus on what matters: your team.
+                                </p>
+
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                    <Button asChild size="lg" className="h-14 px-8 text-lg rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-current/20 transition-all hover:scale-105">
+                                        <Link href="/get-quote">
+                                            Start Free Trial
+                                        </Link>
+                                    </Button>
+                                    <Button asChild variant="outline" size="lg" className="h-14 px-8 text-lg rounded-full border-border/50 bg-background/50 hover:bg-background/80 backdrop-blur-sm">
+                                        <Link href="/contact">
+                                            Schedule Demo
+                                        </Link>
+                                    </Button>
+                                </div>
+                            </motion.div>
+
+                            {/* Image (Second in DOM = Right on Desktop, Bottom on Mobile) */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
                                 className="flex-1 w-full max-w-xl lg:max-w-none relative"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 rounded-[3rem] blur-3xl -z-10 transform scale-90" />
@@ -109,58 +151,17 @@ export default function FeaturesPage() {
                                     </div>
 
                                     {/* Glass Overlay Card */}
-                                    <div className="absolute bottom-12 left-6 right-6 lg:left-12 lg:right-12 bg-white/90 dark:bg-black/80 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-lg">
+                                    <div className="absolute bottom-12 left-6 right-6 lg:-left-12 lg:right-auto bg-white/90 dark:bg-black/80 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-lg max-w-xs">
                                         <div className="flex items-center gap-4">
                                             <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-400 shrink-0">
                                                 <CheckCircle className="w-6 h-6" />
                                             </div>
                                             <div>
-                                                <div className="font-bold text-lg text-foreground">All Systems Operational</div>
-                                                <div className="text-sm text-muted-foreground">99.99% Uptime Guaranteed</div>
+                                                <div className="font-bold text-lg text-foreground">Payroll Ready</div>
+                                                <div className="text-sm text-muted-foreground">Zero Errors Detected</div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </motion.div>
-
-                            {/* Right: Copy */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.8, delay: 0.2 }}
-                                className="flex-1 space-y-8 text-center lg:text-left"
-                            >
-                                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-sm font-medium">
-                                    <span className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                                    </span>
-                                    Feature-Rich Platform
-                                </div>
-
-                                <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1]">
-                                    Powerful tools for <br />
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400">
-                                        modern teams.
-                                    </span>
-                                </h1>
-
-                                <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light">
-                                    From automated payroll to performance reviews, Pay-R gives you the superpowers to build a world-class organization.
-                                    Join the future of work today.
-                                </p>
-
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                                    <Button asChild size="lg" className="h-14 px-8 text-lg rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-current/20 transition-all hover:scale-105">
-                                        <Link href="/get-quote">
-                                            Start Free Trial
-                                        </Link>
-                                    </Button>
-                                    <Button asChild variant="outline" size="lg" className="h-14 px-8 text-lg rounded-full border-border/50 bg-background/50 hover:bg-background/80 backdrop-blur-sm">
-                                        <Link href="/contact">
-                                            Schedule Demo
-                                        </Link>
-                                    </Button>
                                 </div>
                             </motion.div>
                         </div>
