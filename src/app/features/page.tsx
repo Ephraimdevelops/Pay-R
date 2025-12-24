@@ -96,19 +96,22 @@ export default function FeaturesPage() {
                                 className="flex-1 w-full max-w-xl lg:max-w-none relative"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 rounded-[3rem] blur-3xl -z-10 transform scale-90" />
-                                <div className="relative rounded-[2.5rem] overflow-hidden border border-white/20 shadow-2xl bg-white/5 backdrop-blur-sm">
-                                    <Image
-                                        src="/images/features-team.png"
-                                        alt="Pay-R Team Collaboration"
-                                        width={800}
-                                        height={800}
-                                        className="w-full h-auto object-cover"
-                                        priority
-                                    />
+                                <div className="relative">
+                                    <div className="relative [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]">
+                                        <Image
+                                            src="/images/features-team.png"
+                                            alt="Pay-R Team Collaboration"
+                                            width={800}
+                                            height={800}
+                                            className="w-full h-auto object-cover"
+                                            priority
+                                        />
+                                    </div>
+
                                     {/* Glass Overlay Card */}
-                                    <div className="absolute bottom-6 left-6 right-6 bg-white/90 dark:bg-black/80 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-lg">
+                                    <div className="absolute bottom-12 left-6 right-6 lg:left-12 lg:right-12 bg-white/90 dark:bg-black/80 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-lg">
                                         <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-400">
+                                            <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-400 shrink-0">
                                                 <CheckCircle className="w-6 h-6" />
                                             </div>
                                             <div>
