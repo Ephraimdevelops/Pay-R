@@ -76,7 +76,7 @@ export function MobileAppPreview() {
                     <div className="flex-1 relative w-full flex justify-center lg:justify-end -mb-16 md:-mb-24 mt-8 lg:mt-0">
                         <div className="relative w-full max-w-[550px] aspect-square">
                             {/* Gradient Mask to fade bottom */}
-                            <div className="absolute inset-0 z-20 bg-gradient-to-t from-background via-transparent to-transparent h-1/4 bottom-0" />
+
 
                             <Image
                                 src="/images/app-background.png"
