@@ -63,15 +63,15 @@ export default function MobileAppPage() {
                                 </div>
                             </div>
 
-                            <div className="flex-1 relative flex justify-center lg:justify-end">
-                                <div className="relative w-[320px] md:w-[450px] aspect-[1/2] z-10 transition-transform duration-700 hover:rotate-[-2deg] hover:scale-[1.02]">
+                            <div className="flex-1 relative flex justify-center lg:justify-end lg:-mr-32">
+                                <div className="relative w-[350px] sm:w-[500px] lg:w-[800px] aspect-[1/2] lg:aspect-auto h-[700px] lg:h-[900px] z-10 transition-transform duration-700 hover:rotate-[-2deg] hover:scale-[1.02]">
                                     <Image
                                         src="/images/mobile-app-mockup.png"
                                         alt="Pay-R App Dashboard Mockup"
                                         fill
                                         className="object-contain drop-shadow-2xl"
                                         priority
-                                        sizes="(max-width: 768px) 100vw, 450px"
+                                        sizes="(max-width: 768px) 100vw, 800px"
                                     />
                                 </div>
                             </div>
