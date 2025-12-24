@@ -94,7 +94,7 @@ export default function CompanyPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light"
+                            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
                         >
                             Pay-R was founded on a simple premise: HR software shouldn&apos;t be painful.
                             We&apos;re re-imagining how companies manage their most valuable asset — their people.
@@ -138,7 +138,7 @@ export default function CompanyPage() {
                             </div>
                             <div className="flex-1 space-y-8">
                                 <h2 className="text-3xl md:text-4xl font-medium text-foreground">Our Journey</h2>
-                                <div className="space-y-6 text-lg text-muted-foreground font-light leading-relaxed">
+                                <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                                     <p>
                                         It started in 2023 when our founders realized that despite all the technological advancements,
                                         running payroll and managing HR was still a nightmare of spreadsheets, emails, and clunky legacy software.
@@ -163,7 +163,7 @@ export default function CompanyPage() {
                     <div className="container mx-auto px-4 md:px-6">
                         <div className="text-center max-w-3xl mx-auto mb-16">
                             <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-4">Our Core Values</h2>
-                            <p className="text-lg text-muted-foreground font-light">
+                            <p className="text-lg text-muted-foreground">
                                 The principles that guide every decision we make.
                             </p>
                         </div>
@@ -182,7 +182,7 @@ export default function CompanyPage() {
                                         <value.icon className={`w-6 h-6 ${value.color}`} />
                                     </div>
                                     <h3 className="text-xl font-medium text-foreground mb-3">{value.title}</h3>
-                                    <p className="text-muted-foreground leading-relaxed font-light">
+                                    <p className="text-muted-foreground leading-relaxed">
                                         {value.description}
                                     </p>
                                 </motion.div>
@@ -196,7 +196,7 @@ export default function CompanyPage() {
                     <div className="container mx-auto px-4 md:px-6">
                         <div className="text-center max-w-3xl mx-auto mb-16">
                             <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-4">Meet the Team</h2>
-                            <p className="text-lg text-muted-foreground font-light">
+                            <p className="text-lg text-muted-foreground">
                                 A diverse group of experts from HR, engineering, and design.
                             </p>
                         </div>
@@ -236,7 +236,7 @@ export default function CompanyPage() {
                         <h2 className="text-3xl md:text-5xl font-medium text-white mb-6 tracking-tight">
                             Join us in shaping the future of work.
                         </h2>
-                        <p className="text-xl text-blue-100/80 mb-10 max-w-2xl mx-auto font-light">
+                        <p className="text-xl text-blue-100/80 mb-10 max-w-2xl mx-auto">
                             We&apos;re always looking for talented individuals to join our remote-first team.
                         </p>
                         <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl hover:shadow-2xl transition-all hover:scale-105">

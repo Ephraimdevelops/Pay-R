@@ -47,7 +47,7 @@ export default function ROICalculatorPage() {
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
                             Calculate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">ROI</span>
                         </h1>
-                        <p className="text-xl text-muted-foreground font-light">
+                        <p className="text-xl text-muted-foreground">
                             See exactly how much man-hours and money Pay-R can save your Tanzanian business.
                         </p>
                     </div>

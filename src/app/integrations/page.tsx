@@ -48,7 +48,7 @@ export default function IntegrationsPage() {
                             Connected with the <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Tanzanian Ecosystem</span>
                         </h1>
-                        <p className="text-xl text-muted-foreground font-light">
+                        <p className="text-xl text-muted-foreground">
                             Pay-R integrates seamlessly with your favorite banks, mobile money providers, and compliance bodies.
                         </p>
                     </div>

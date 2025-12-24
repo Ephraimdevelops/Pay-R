@@ -38,7 +38,7 @@ export default function BlogIndexPage() {
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
                         Pay-R <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Insights</span>
                     </h1>
-                    <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
+                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                         Expert advice on payroll, compliance, and building better workplaces.
                     </p>
                 </div>
