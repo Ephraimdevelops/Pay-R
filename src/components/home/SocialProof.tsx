@@ -19,11 +19,11 @@ export function SocialProof() {
                 </p>
 
                 {/* Static Logo Grid */}
-                <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
+                <div className="flex flex-wrap items-center justify-center gap-12 md:gap-24">
                     {clients.map((client, index) => (
                         <div
                             key={index}
-                            className="group relative flex items-center justify-center w-32 h-16 md:w-40 md:h-20 transition-all duration-300"
+                            className="group relative flex items-center justify-center w-72 h-36 md:w-96 md:h-48 transition-all duration-300 transform hover:scale-110"
                         >
                             <div className="relative w-full h-full grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 <Image
