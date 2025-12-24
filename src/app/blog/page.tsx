@@ -1,175 +1,173 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Search, Clock, Calendar, ArrowRight } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import Image from "next/image";
+import { Calendar, ChevronRight, Search, ArrowRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
-// Mock Data
-const blogPosts = [
-    {
-        id: 1,
-        title: "The Future of Remote Work in 2025",
-        excerpt: "How AI and VR are reshaping the way we collaborate across borders.",
-        category: "Trends",
-        readTime: "5 min read",
-        date: "Nov 15, 2024",
-        author: "Sarah Chen",
-        image: "https://images.unsplash.com/photo-1593642632823-8f7856677741?w=800&h=400&fit=crop",
-        slug: "future-of-remote-work"
-    },
-    {
-        id: 2,
-        title: "Mastering Payroll Compliance",
-        excerpt: "A comprehensive guide to navigating global tax regulations without the headache.",
-        category: "Compliance",
-        readTime: "8 min read",
-        date: "Nov 12, 2024",
-        author: "Michael Ross",
-        image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=400&fit=crop",
-        slug: "mastering-payroll-compliance"
-    },
-    {
-        id: 3,
-        title: "Building a High-Performance Culture",
-        excerpt: "Strategies from top HR leaders on motivating teams and driving results.",
-        category: "Culture",
-        readTime: "6 min read",
-        date: "Nov 10, 2024",
-        author: "Jessica Wu",
-        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=400&fit=crop",
-        slug: "building-culture"
-    },
-    {
-        id: 4,
-        title: "AI in Recruitment: Friend or Foe?",
-        excerpt: "Exploring the ethical implications and efficiency gains of automated hiring.",
-        category: "Technology",
-        readTime: "7 min read",
-        date: "Nov 08, 2024",
-        author: "David Miller",
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=400&fit=crop",
-        slug: "ai-in-recruitment"
-    },
-];
-
-export default function BlogPage() {
+export default function BlogIndexPage() {
+    const posts = useQuery(api.cms.getPublishedPosts);
+    const [selectedCategory, setSelectedCategory] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
 
-    const filteredPosts = blogPosts.filter(post =>
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.category.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const categories = ["All", "Product Updates", "Compliance", "HR Tips", "Company News"];
+
+    // Filter Logic
+    const filteredPosts = posts?.filter(post => {
+        const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
+        const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    }) || [];
+
+    const featuredPost = filteredPosts.length > 0 ? filteredPosts[0] : null;
+    const gridPosts = filteredPosts.length > 0 ? filteredPosts.slice(1) : [];
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-background flex flex-col font-sans">
             <Header />
-
-            {/* Hero Section */}
-            <section className="pt-32 pb-20 bg-slate-900 text-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-purple-900/50" />
-                <div className="container mx-auto px-4 relative z-10 text-center">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-                        Insights & Resources
+            <main className="flex-1 pt-32 pb-20">
+                {/* Header Section */}
+                <div className="container mx-auto px-4 md:px-6 mb-12 text-center">
+                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                        Pay-R <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Insights</span>
                     </h1>
-                    <p className="text-xl text-blue-100/80 max-w-2xl mx-auto mb-10">
-                        Expert advice, industry trends, and practical guides for modern HR teams.
+                    <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
+                        Expert advice on payroll, compliance, and building better workplaces.
                     </p>
-
-                    <div className="max-w-md mx-auto relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-                        <Input
-                            className="pl-10 h-12 rounded-full bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:bg-white/20 transition-all"
-                            placeholder="Search articles..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                    </div>
                 </div>
-            </section>
 
-            {/* Featured Post (First one) */}
-            {filteredPosts.length > 0 && !searchQuery && (
-                <section className="py-16 container mx-auto px-4">
-                    <div className="grid md:grid-cols-2 gap-8 items-center bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-                        <div className="relative h-64 md:h-96 w-full rounded-2xl overflow-hidden">
-                            <Image
-                                src={filteredPosts[0].image}
-                                alt={filteredPosts[0].title}
-                                fill
-                                className="object-cover hover:scale-105 transition-transform duration-500"
+                {/* Controls */}
+                <div className="container mx-auto px-4 md:px-6 mb-16">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-6 p-4 rounded-2xl bg-card border shadow-sm">
+                        <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide">
+                            {categories.map(cat => (
+                                <button
+                                    key={cat}
+                                    onClick={() => setSelectedCategory(cat)}
+                                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${selectedCategory === cat
+                                        ? "bg-primary text-primary-foreground shadow-md"
+                                        : "bg-muted text-muted-foreground hover:bg-muted/80"
+                                        }`}
+                                >
+                                    {cat}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="relative w-full md:w-64">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                            <Input
+                                placeholder="Search articles..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="pl-9 h-10 rounded-full bg-background"
                             />
                         </div>
-                        <div className="space-y-6">
-                            <div className="flex items-center gap-4 text-sm text-slate-500">
-                                <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-medium">{filteredPosts[0].category}</span>
-                                <span className="flex items-center gap-1"><Calendar className="w-4 h-4" /> {filteredPosts[0].date}</span>
-                                <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {filteredPosts[0].readTime}</span>
-                            </div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
-                                <Link href={`/blog/${filteredPosts[0].slug}`} className="hover:text-blue-600 transition-colors">
-                                    {filteredPosts[0].title}
-                                </Link>
-                            </h2>
-                            <p className="text-lg text-slate-600">
-                                {filteredPosts[0].excerpt}
-                            </p>
-                            <div className="flex items-center gap-3 pt-4">
-                                <div className="w-10 h-10 rounded-full bg-slate-200" />
-                                <div>
-                                    <p className="font-semibold text-slate-900">{filteredPosts[0].author}</p>
-                                    <p className="text-sm text-slate-500">Editor in Chief</p>
+                    </div>
+                </div>
+
+                {!posts ? (
+                    <div className="container mx-auto px-4 text-center py-20">
+                        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                        <p className="mt-4 text-muted-foreground">Loading articles...</p>
+                    </div>
+                ) : filteredPosts.length === 0 ? (
+                    <div className="container mx-auto px-4 text-center py-20">
+                        <p className="text-xl text-muted-foreground">No articles found.</p>
+                        <Button variant="link" onClick={() => { setSelectedCategory("All"); setSearchQuery(""); }}>
+                            Clear filters
+                        </Button>
+                    </div>
+                ) : (
+                    <div className="container mx-auto px-4 md:px-6 space-y-16">
+                        {/* Featured Post (Only show if on first page/no search filter active generally, but distinct logic is fine) */}
+                        {featuredPost && (
+                            <Link href={`/blog/${featuredPost.slug}`} className="group block relative rounded-3xl overflow-hidden border border-border shadow-2xl transition-transform hover:scale-[1.01] duration-500">
+                                <div className="grid md:grid-cols-2 h-full">
+                                    <div className="relative min-h-[300px] md:min-h-[400px]">
+                                        <Image
+                                            src={featuredPost.coverImageUrl || "/images/blog-placeholder.jpg"}
+                                            alt={featuredPost.title}
+                                            fill
+                                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-none" />
+                                    </div>
+                                    <div className="p-8 md:p-12 flex flex-col justify-center bg-card relative z-10">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <Badge variant="secondary" className="bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400">
+                                                Featured
+                                            </Badge>
+                                            <span className="text-sm text-muted-foreground flex items-center">
+                                                <Calendar className="w-3 h-3 mr-1" />
+                                                {new Date(featuredPost._creationTime).toLocaleDateString()}
+                                            </span>
+                                        </div>
+                                        <h2 className="text-3xl md:text-4xl font-bold mb-4 group-hover:text-primary transition-colors">
+                                            {featuredPost.title}
+                                        </h2>
+                                        {/* Assuming excerpt exists, otherwise truncate content (cleaned) */}
+                                        <p className="text-muted-foreground text-lg mb-8 line-clamp-3">
+                                            {featuredPost.excerpt || "Read the latest insights from our team..."}
+                                        </p>
+                                        <div className="flex items-center text-primary font-medium group-hover:translate-x-1 transition-transform">
+                                            Read Article <ArrowRight className="ml-2 w-4 h-4" />
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
+                        )}
+
+                        {/* Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {gridPosts.map(post => (
+                                <Link key={post._id} href={`/blog/${post.slug}`} className="group flex flex-col bg-card rounded-2xl overflow-hidden border border-border hover:shadow-xl transition-all duration-300">
+                                    <div className="relative aspect-video overflow-hidden">
+                                        <Image
+                                            src={post.coverImageUrl || "/images/blog-placeholder.jpg"}
+                                            alt={post.title}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                        <div className="absolute top-4 left-4">
+                                            <Badge variant="secondary" className="backdrop-blur-md bg-white/90 dark:bg-black/50 text-foreground">
+                                                {post.category || "General"}
+                                            </Badge>
+                                        </div>
+                                    </div>
+                                    <div className="p-6 flex-1 flex flex-col">
+                                        <div className="text-sm text-muted-foreground mb-3 flex items-center gap-4">
+                                            <span className="flex items-center">
+                                                <Calendar className="w-3 h-3 mr-1" />
+                                                {new Date(post._creationTime).toLocaleDateString()}
+                                            </span>
+                                            {/* <span className="flex items-center">
+                                                <Clock className="w-3 h-3 mr-1" />
+                                                5 min read
+                                            </span> */}
+                                        </div>
+                                        <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                                            {post.title}
+                                        </h3>
+                                        <p className="text-muted-foreground text-sm line-clamp-3 mb-4 flex-1">
+                                            {post.excerpt || "Click to read more..."}
+                                        </p>
+                                        <div className="flex items-center text-sm font-medium text-primary mt-auto">
+                                            Read More <ChevronRight className="w-4 h-4 ml-1" />
+                                        </div>
+                                    </div>
+                                </Link>
+                            ))}
                         </div>
                     </div>
-                </section>
-            )}
-
-            {/* Post Grid */}
-            <section className="py-12 container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {(searchQuery ? filteredPosts : filteredPosts.slice(1)).map((post) => (
-                        <Link key={post.id} href={`/blog/${post.slug}`} className="group">
-                            <article className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                                <div className="relative h-48 overflow-hidden">
-                                    <Image
-                                        src={post.image}
-                                        alt={post.title}
-                                        fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                    />
-                                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-900">
-                                        {post.category}
-                                    </div>
-                                </div>
-                                <div className="p-6 flex-1 flex flex-col">
-                                    <div className="flex items-center gap-4 text-xs text-slate-500 mb-3">
-                                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {post.date}</span>
-                                        <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {post.readTime}</span>
-                                    </div>
-                                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
-                                        {post.title}
-                                    </h3>
-                                    <p className="text-slate-600 text-sm mb-6 flex-1">
-                                        {post.excerpt}
-                                    </p>
-                                    <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                                        <span className="text-sm font-medium text-slate-900">{post.author}</span>
-                                        <ArrowRight className="w-4 h-4 text-blue-600 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                                    </div>
-                                </div>
-                            </article>
-                        </Link>
-                    ))}
-                </div>
-            </section>
-
+                )}
+            </main>
             <Footer />
         </div>
     );

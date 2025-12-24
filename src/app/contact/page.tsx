@@ -41,7 +41,7 @@ export default function ContactPage() {
         <div className="min-h-screen bg-slate-50 dark:bg-[#020617]">
             <Header />
 
-            <main className="pt-32 pb-20">
+            <main className="pt-44 md:pt-48 pb-20">
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Contact Info */}

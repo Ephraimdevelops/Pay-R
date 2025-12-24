@@ -11,16 +11,17 @@ interface ModuleSectionProps {
     features: string[];
     theme: "blue" | "green" | "orange" | "purple" | "gold";
     imagePosition?: "left" | "right";
+    label: string;
     children?: React.ReactNode; // For custom UI preview
 }
 
 const themeColors = {
     blue: {
-        bg: "bg-blue-50",
-        text: "text-blue-600",
-        gradient: "from-blue-500 to-cyan-400",
-        border: "border-blue-200",
-        shadow: "shadow-blue-500/10",
+        bg: "bg-[#41A1E1]/10",
+        text: "text-[#41A1E1]",
+        gradient: "from-[#41A1E1] to-cyan-400",
+        border: "border-[#41A1E1]/20",
+        shadow: "shadow-[#41A1E1]/10",
     },
     green: {
         bg: "bg-emerald-50",
@@ -58,6 +59,7 @@ export function ModuleSection({
     features,
     theme,
     imagePosition = "right",
+    label,
     children,
 }: ModuleSectionProps) {
     const ref = useRef(null);
@@ -97,7 +99,7 @@ export function ModuleSection({
                             viewport={{ once: true, margin: "-100px" }}
                         >
                             <span className={cn("inline-block px-3 py-1 rounded-full text-sm font-medium mb-4", colors.bg, colors.text)}>
-                                {theme.charAt(0).toUpperCase() + theme.slice(1)} Module
+                                {label}
                             </span>
                             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
                                 {title}
@@ -138,50 +140,14 @@ export function ModuleSection({
                             style={{ y, opacity }}
                             className="relative"
                         >
-                            <div className={cn(
-                                "relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden glass-card",
-                                colors.border,
-                                colors.shadow
-                            )}>
-                                {/* Gradient Overlay */}
-                                <div className={cn("absolute inset-0 opacity-10 bg-gradient-to-br", colors.gradient)} />
-
-                                {/* Content Container */}
-                                <div className="relative h-full p-8 flex items-center justify-center">
-                                    {children ? children : (
-                                        <div className="text-center text-muted-foreground">
-                                            UI Preview Placeholder
-                                        </div>
-                                    )}
-                                </div>
+                            {/* Content Container - Clean, no padding/border fluff */}
+                            <div className="relative w-full">
+                                {children ? children : (
+                                    <div className="aspect-video rounded-2xl bg-muted flex items-center justify-center text-muted-foreground">
+                                        UI Preview Placeholder
+                                    </div>
+                                )}
                             </div>
-
-                            {/* Floating Elements */}
-                            <motion.div
-                                animate={{ y: [0, -20, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className={cn(
-                                    "absolute -top-10 -right-10 w-24 h-24 rounded-xl glass-card flex items-center justify-center z-10",
-                                    colors.border
-                                )}
-                            >
-                                <div className={cn("w-12 h-12 rounded-full opacity-20", colors.bg)} />
-                            </motion.div>
-
-                            <motion.div
-                                animate={{ y: [0, 20, 0] }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                className={cn(
-                                    "absolute -bottom-5 -left-5 w-48 h-16 rounded-xl glass-card flex items-center gap-3 px-4 z-10",
-                                    colors.border
-                                )}
-                            >
-                                <div className={cn("w-8 h-8 rounded-full shrink-0", colors.bg)} />
-                                <div className="space-y-2 w-full">
-                                    <div className="h-2 w-2/3 bg-gray-200 rounded-full" />
-                                    <div className="h-2 w-1/2 bg-gray-100 rounded-full" />
-                                </div>
-                            </motion.div>
                         </motion.div>
                     </div>
 

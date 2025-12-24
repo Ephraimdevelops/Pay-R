@@ -16,8 +16,8 @@ const features = [
         title: "Employee Management",
         description: "Manage all your employees in one place. Add, edit, search and view any information easily with self-service access.",
         icon: Users,
-        color: "text-blue-500",
-        bg: "bg-blue-50",
+        color: "text-[#41A1E1]",
+        bg: "bg-[#41A1E1]/10",
     },
     {
         title: "Payroll Management",

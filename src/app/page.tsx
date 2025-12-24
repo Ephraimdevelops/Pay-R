@@ -3,6 +3,7 @@ import { ValueProps } from "@/components/home/ValueProps";
 import { Modules } from "@/components/home/Modules";
 import { Testimonials } from "@/components/home/Testimonials";
 import { CTA } from "@/components/home/CTA";
+import { MobileAppPreview } from "@/components/home/MobileAppPreview";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
@@ -12,6 +13,7 @@ export default function Home() {
       <Header />
       <Hero />
       <Modules />
+      <MobileAppPreview />
       <ValueProps />
       <Testimonials />
       <CTA />

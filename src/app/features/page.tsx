@@ -72,7 +72,7 @@ export default function FeaturesPage() {
         <div className="min-h-screen bg-white">
             <Header />
 
-            <main className="pt-32 pb-20">
+            <main className="pt-44 md:pt-48 pb-20">
                 {/* Hero */}
                 <div className="container mx-auto px-4 md:px-6 text-center mb-20">
                     <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">

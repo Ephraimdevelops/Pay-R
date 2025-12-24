@@ -3,8 +3,9 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
-import { ArrowRight, Users, Target, Heart, Globe, Award, Shield } from "lucide-react";
+import { ArrowRight, Target, Heart, Shield, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const values = [
     {
@@ -73,7 +74,7 @@ export default function CompanyPage() {
         <div className="min-h-screen bg-background text-foreground">
             <Header />
 
-            <main className="pt-20">
+            <main className="pt-44 md:pt-48">
                 {/* Hero Section */}
                 <section className="relative py-32 overflow-hidden">
                     <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03] dark:opacity-[0.05] -z-10" />
@@ -126,12 +127,13 @@ export default function CompanyPage() {
                         <div className="flex flex-col lg:flex-row items-center gap-16">
                             <div className="flex-1">
                                 <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-card/50 backdrop-blur-xl group">
-                                    <img
+                                    <Image
                                         src="/images/office-environment.png"
                                         alt="Pay-R Office"
-                                        className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
                                 </div>
                             </div>
                             <div className="flex-1 space-y-8">
@@ -203,12 +205,15 @@ export default function CompanyPage() {
                             {team.map((member, index) => (
                                 <div key={index} className="group relative">
                                     <div className="aspect-[4/5] rounded-3xl mb-6 overflow-hidden relative bg-card/50 border border-border/50">
-                                        <img
-                                            src={member.image}
-                                            alt={member.name}
-                                            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                        <div className="relative w-full h-full">
+                                            <Image
+                                                src={member.image}
+                                                alt={member.name}
+                                                fill
+                                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                            />
+                                        </div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 z-10">
                                             <p className="text-white/90 text-sm font-light">
                                                 {member.bio}
                                             </p>
@@ -234,7 +239,7 @@ export default function CompanyPage() {
                         <p className="text-xl text-blue-100/80 mb-10 max-w-2xl mx-auto font-light">
                             We&apos;re always looking for talented individuals to join our remote-first team.
                         </p>
-                        <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-white text-blue-900 hover:bg-blue-50 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
+                        <Button size="lg" className="h-14 px-8 text-lg rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
                             View Open Positions <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                     </div>

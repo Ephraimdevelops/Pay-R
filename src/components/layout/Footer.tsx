@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Twitter, Linkedin, Github, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
@@ -11,13 +12,19 @@ export function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
                     {/* Brand & Vision */}
                     <div className="max-w-md space-y-6">
-                        <Link href="/" className="flex items-center gap-2 group">
-                            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20">
-                                P
-                            </div>
-                            <span className="text-2xl font-medium tracking-tight text-foreground">
-                                Pay-R
-                            </span>
+                        <Link href="/" className="relative h-32 w-96 block transition-transform duration-300 hover:scale-105">
+                            <Image
+                                src="/images/logo-color.png"
+                                alt="Pay-R Logo"
+                                fill
+                                className="object-contain dark:hidden"
+                            />
+                            <Image
+                                src="/images/logo-white.png"
+                                alt="Pay-R Logo"
+                                fill
+                                className="object-contain hidden dark:block"
+                            />
                         </Link>
                         <p className="text-xl text-muted-foreground font-light leading-relaxed">
                             Building the operating system for the modern workforce.

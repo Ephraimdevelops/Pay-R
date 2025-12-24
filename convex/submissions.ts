@@ -33,6 +33,12 @@ export const submitDemoRequest = mutation({
         name: v.string(),
         email: v.string(),
         company: v.string(),
+        position: v.string(),
+        phone: v.string(),
+        employees: v.string(),
+        preferredDate: v.string(),
+        preferredTime: v.string(),
+        modules: v.array(v.string()),
     },
     handler: async (ctx, args) => {
         await ctx.db.insert("submissions", {
@@ -40,6 +46,12 @@ export const submitDemoRequest = mutation({
             name: args.name,
             email: args.email,
             company: args.company,
+            position: args.position,
+            phone: args.phone,
+            employees: args.employees,
+            preferredDate: args.preferredDate,
+            preferredTime: args.preferredTime,
+            modules: args.modules,
             status: "new",
             createdAt: Date.now(),
         });

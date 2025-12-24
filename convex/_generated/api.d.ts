@@ -10,6 +10,8 @@
 
 import type * as analytics from "../analytics.js";
 import type * as blog from "../blog.js";
+import type * as cms from "../cms.js";
+import type * as leads from "../leads.js";
 import type * as submissions from "../submissions.js";
 
 import type {
@@ -21,6 +23,8 @@ import type {
 declare const fullApi: ApiFromModules<{
   analytics: typeof analytics;
   blog: typeof blog;
+  cms: typeof cms;
+  leads: typeof leads;
   submissions: typeof submissions;
 }>;
 
