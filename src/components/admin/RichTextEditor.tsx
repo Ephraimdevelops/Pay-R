@@ -102,6 +102,7 @@ export function RichTextEditor({ value, onChange, className }: RichTextEditorPro
         onUpdate: ({ editor }) => {
             onChange(editor.getHTML());
         },
+        immediatelyRender: false,
     });
 
     return (

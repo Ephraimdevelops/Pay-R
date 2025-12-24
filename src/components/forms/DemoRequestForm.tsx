@@ -90,6 +90,17 @@ export function DemoRequestForm({ onSuccess }: { onSuccess?: () => void }) {
         <form onSubmit={handleSubmit} className="space-y-6 py-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
+                    <Label htmlFor="name">Full Name</Label>
+                    <Input id="name" name="name" placeholder="John Doe" required />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="email">Work Email</Label>
+                    <Input id="email" name="email" type="email" placeholder="you@company.com" required />
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
                     <Label htmlFor="company">Company Name</Label>
                     <Input id="company" name="company" placeholder="Acme Inc." required />
                 </div>
@@ -99,28 +110,23 @@ export function DemoRequestForm({ onSuccess }: { onSuccess?: () => void }) {
                 </div>
             </div>
 
-            <div className="space-y-2">
-                <Label htmlFor="employees">Number of Employees</Label>
-                <Select name="employees" required>
-                    <SelectTrigger>
-                        <SelectValue placeholder="Select company size" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        {EMPLOYEES_OPTIONS.map(opt => (
-                            <SelectItem key={opt} value={opt}>{opt}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                    <Label htmlFor="email">Work Email</Label>
-                    <Input id="email" name="email" type="email" placeholder="you@company.com" required />
-                </div>
                 <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
                     <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" required />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="employees">Number of Employees</Label>
+                    <Select name="employees" required>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select company size" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {EMPLOYEES_OPTIONS.map(opt => (
+                                <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
                 </div>
             </div>
 

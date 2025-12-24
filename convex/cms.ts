@@ -193,3 +193,57 @@ export const getPostBySlug = query({
         return { ...post, coverImageUrl };
     },
 });
+
+export const createBlogPost = mutation({
+    args: {
+        title: v.string(),
+        slug: v.string(),
+        content: v.string(),
+        coverImage: v.optional(v.string()),
+        category: v.optional(v.string()),
+        status: v.union(v.literal("draft"), v.literal("published")),
+    },
+    handler: async (ctx, args) => {
+        // For now, assign to the first found admin user or create a temporary one if none exist (for dev)
+        // In a real app, this would come from ctx.auth
+        let user = await ctx.db
+            .query("users")
+            .filter(q => q.eq(q.field("role"), "admin"))
+            .first();
+
+        // Fallback for dev environment if no admin exists
+        if (!user) {
+            user = await ctx.db.query("users").first();
+        }
+
+        if (!user) {
+            // Auto-create a default admin user for development
+            const newUserId = await ctx.db.insert("users", {
+                name: "System Admin",
+                email: "admin@pay-r.com",
+                role: "admin",
+            });
+            user = await ctx.db.get(newUserId);
+
+            // Should theoretically exist now, but safety check
+            if (!user) throw new Error("Failed to create default admin user.");
+        }
+
+        const excerpt = args.content.replace(/<[^>]+>/g, '').substring(0, 200) + "..."; // Simple text extraction
+
+        const postId = await ctx.db.insert("blogPosts", {
+            title: args.title,
+            slug: args.slug,
+            content: args.content,
+            coverImage: args.coverImage,
+            authorId: user._id,
+            status: args.status,
+            category: args.category,
+            excerpt: excerpt,
+            publishedAt: args.status === "published" ? Date.now() : undefined,
+            tags: [], // Todo: Add tags support
+        });
+
+        return postId;
+    },
+});

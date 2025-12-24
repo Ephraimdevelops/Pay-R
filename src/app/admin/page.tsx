@@ -377,12 +377,44 @@ function TestimonialManager() {
 }
 
 function BlogManager() {
-    // Phase 2: Blog Manager UI
     const [title, setTitle] = useState("");
     const [slug, setSlug] = useState("");
-    const [content, setContent] = useState(""); // HTML content
+    const [content, setContent] = useState("");
     const [coverImage, setCoverImage] = useState("");
     const [category, setCategory] = useState("Product");
+
+    const createPost = useMutation(api.cms.createBlogPost);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handlePublish = async (status: "draft" | "published") => {
+        if (!title || !slug || !content) {
+            alert("Please fill in all required fields (Title, Slug, Content)");
+            return;
+        }
+
+        setIsSubmitting(true);
+        try {
+            await createPost({
+                title,
+                slug,
+                content,
+                category,
+                coverImage: coverImage || undefined,
+                status
+            });
+            alert(`Post ${status === "published" ? "published" : "saved as draft"} successfully!`);
+            // Reset form
+            setTitle("");
+            setSlug("");
+            setContent("");
+            setCoverImage("");
+        } catch (error) {
+            console.error("Failed to save post:", error);
+            alert("Failed to save post. See console for details.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <Card>
@@ -399,7 +431,6 @@ function BlogManager() {
                                 value={title}
                                 onChange={(e) => {
                                     setTitle(e.target.value);
-                                    // Simple slugify
                                     setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''));
                                 }}
                                 placeholder="e.g. 5 Ways to Automate Payroll"
@@ -444,8 +475,14 @@ function BlogManager() {
                 </div>
 
                 <div className="flex justify-end gap-2">
-                    <Button variant="outline">Save Draft</Button>
-                    <Button>Publish Post</Button>
+                    <Button variant="outline" onClick={() => handlePublish("draft")} disabled={isSubmitting}>
+                        {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                        Save Draft
+                    </Button>
+                    <Button onClick={() => handlePublish("published")} disabled={isSubmitting}>
+                        {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                        Publish Post
+                    </Button>
                 </div>
             </CardContent>
         </Card>
